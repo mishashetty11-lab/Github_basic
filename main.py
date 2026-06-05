@@ -1,14 +1,18 @@
-from flask import Flask
+from flask import Flask,render_template
 
 app = Flask(__name__)
 
 @app.route('/') 
 def home():
-    return "Hello, World!"
+    return render_template("home.html")
 
-app.route("/abc")
+@app.route("/abc")
 def abc():
-    return "This is the ABC route."
+    return render_template("abc.html")
+
+@app.route("/<name>")
+def greet(name):
+    return render_template("greet.html",user_name=name)
 
 
 if __name__ == '__main__':
